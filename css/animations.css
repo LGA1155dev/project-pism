@@ -1,0 +1,128 @@
+/* ==========================================================================
+   REVEAL ON SCROLL — fade + slide
+   Applied via IntersectionObserver in js/scroll.js (adds/removes .is-visible)
+   ========================================================================== */
+[data-reveal]{
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s var(--ease-out), transform .9s var(--ease-out);
+}
+[data-reveal].is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger children of the same section slightly */
+.about__inner [data-reveal]:nth-child(1){ transition-delay: 0s; }
+.about__inner [data-reveal]:nth-child(2){ transition-delay: .05s; }
+.about__inner [data-reveal]:nth-child(3){ transition-delay: .1s; }
+
+.projects__grid .card:nth-child(1){ transition-delay: 0s; }
+.projects__grid .card:nth-child(2){ transition-delay: .08s; }
+.projects__grid .card:nth-child(3){ transition-delay: .16s; }
+.projects__grid .card:nth-child(4){ transition-delay: .24s; }
+
+/* ==========================================================================
+   HERO LOCKUP — gentle ambient float (purely decorative, subtle)
+   ========================================================================== */
+@keyframes ambient-float{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-6px); }
+}
+.hero__lockup{
+  animation: ambient-float 6s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   FILM GRAIN — subtle animated noise over the whole page (premium texture)
+   ========================================================================== */
+.grain{
+  position: fixed; inset: 0; z-index: 90;
+  pointer-events: none;
+  opacity: .05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 8s steps(8) infinite;
+}
+@keyframes grain-shift{
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-3%, 2%); }
+  40%  { transform: translate(2%, -3%); }
+  60%  { transform: translate(-2%, -2%); }
+  80%  { transform: translate(3%, 1%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ==========================================================================
+   TOP SCROLL PROGRESS — thin line tracking whole-page scroll
+   ========================================================================== */
+.top-progress{
+  position: fixed; top: 0; left: 0; width: 100%; height: 2px; z-index: 101;
+  background: transparent;
+}
+.top-progress__fill{
+  display: block; height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--color-mint), var(--color-ember));
+  transition: width .08s linear;
+}
+
+/* ==========================================================================
+   CUSTOM CURSOR — dot + trailing ring, grows over interactive elements
+   ========================================================================== */
+.cursor{ display: none; }
+
+@media (hover: hover) and (pointer: fine){
+  body{ cursor: none; }
+  .cursor{ display: block; position: fixed; top: 0; left: 0; z-index: 200; pointer-events: none; }
+  .cursor__dot, .cursor__ring{
+    position: fixed; top: 0; left: 0;
+    border-radius: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform;
+  }
+  .cursor__dot{
+    width: 6px; height: 6px; background: var(--color-mint);
+  }
+  .cursor__ring{
+    width: 34px; height: 34px; border: 1px solid rgba(245,239,230,.5);
+    transition: width .3s var(--ease-out), height .3s var(--ease-out),
+                border-color .3s var(--ease-out), background-color .3s var(--ease-out);
+  }
+  .cursor__ring.is-active{
+    width: 56px; height: 56px;
+    background: rgba(127,217,196,.08);
+    border-color: var(--color-mint);
+  }
+}
+
+/* ==========================================================================
+   SPLIT TEXT REVEAL — words/letters staggered in after the loader hides
+   ========================================================================== */
+.split-word{ display: inline-block; overflow: hidden; }
+.split-word span{
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform .9s var(--ease-out);
+}
+[data-split].is-split-visible .split-word span{ transform: translateY(0); }
+
+/* ==========================================================================
+   PROJECT CARD TILT — subtle 3D perspective following the cursor
+   ========================================================================== */
+.projects__grid{ perspective: 1200px; }
+.card{
+  transform-style: preserve-3d;
+  transition: border-color .4s var(--ease-out), transform .15s var(--ease-out);
+}
+
+/* ==========================================================================
+   LOGO DOT PULSE (nav mark accent)
+   ========================================================================== */
+@keyframes pulse-dot{
+  0%, 100%{ opacity: 1; }
+  50%{ opacity: .4; }
+}
+.nav__mark span{
+  display: inline-block;
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}

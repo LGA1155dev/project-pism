@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analise de Dados Pism</title>
+  <meta name="description" content="Desenvolvimento de sites e experiências digitais sob medida.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- ============ AMBIENT LAYERS (grain, cursor, top progress) ============ -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="top-progress" aria-hidden="true"><span id="topProgressFill" class="top-progress__fill"></span></div>
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring" id="cursorRing"></div>
+    <div class="cursor__dot" id="cursorDot"></div>
+  </div>
+
+  <!-- ============ LOADER ============ -->
+  <div id="loader" class="loader">
+    <div class="loader__mark">S.</div>
+    <div class="loader__bar"><span id="loaderProgress" class="loader__bar-fill"></span></div>
+    <div class="loader__pct" id="loaderPct">0%</div>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <a href="#" class="nav__mark">Studio<span>.</span></a>
+    <nav class="nav__links">
+      <a href="#sobre" data-nav="sobre" data-magnetic>Sobre</a>
+      <a href="#projetos" data-nav="projetos" data-magnetic>Projetos</a>
+      <a href="#contato" data-nav="contato" data-magnetic>Contato</a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO (scroll-scrubbed canvas) ============ -->
+  <section id="hero" class="hero">
+    <div class="hero__sticky">
+      <canvas id="heroCanvas" class="hero__canvas"></canvas>
+
+      <div class="hero__vignette"></div>
+      <div class="hero__spotlight" id="heroSpotlight"></div>
+
+      <div class="hero__lockup">
+        <h1 class="hero__title">Projeto<span class="hero__title-italic">Pism.</span></h1>
+        <p class="hero__subtitle" data-split>Design moderno &amp; objetivo de comparar notas e quantas pessoas de cada turma estão fazendo o pism </p>
+      </div>
+
+      <div class="hero__eyebrow">
+        <span>SOBRE</span>
+        <span class="hero__eyebrow-dash">—</span>
+        <span>SCROLL</span>
+      </div>
+
+      <div class="hero__progress">
+        <span id="heroProgressFill" class="hero__progress-fill"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE ============ -->
+  <section id="sobre" class="about">
+    <div class="about__inner">
+      <p class="about__eyebrow reveal" data-reveal>Sobre</p>
+      <h2 class="about__statement reveal" data-reveal>
+        Basicamente, o trabalho é sobre <em>pegar dados de alunos de todas as salas, incluindo 2M1, 2M2 e 3M1</em> e transformar em informações...
+        para assim ver as respectivas notas pondeiradas de cada aluno, quantas pessoas de cada sala estão fazendo o pism, ver suas notas objetiva + Discursiva e compará-las.
+      </h2>
+      <p class="about__body reveal" data-reveal>
+        Trabalho no cruzamento entre design e código: interfaces limpas,
+        movimento com propósito e performance que não sacrifica estética.
+        Cada projeto é construído do zero, sem templates, com atenção a
+        cada detalhe — do primeiro scroll ao último clique.
+      </p>
+
+      <div class="about__stats">
+        <div class="about__stat reveal" data-reveal>
+          <span class="about__stat-num">30+</span>
+          <span class="about__stat-label">Alunos analizados</span>
+        </div>
+        <div class="about__stat reveal" data-reveal>
+          <span class="about__stat-num">10+</span>
+          <span class="about__stat-label">Acima da Média</span>
+        </div>
+        <div class="about__stat reveal" data-reveal>
+          <span class="about__stat-num">20-50%</span>
+          <span class="about__stat-label">De Aproveitamento</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJETOS ============ -->
+  <section id="projetos" class="projects">
+    <div class="projects__header">
+      <p class="projects__eyebrow reveal" data-reveal>Projetos</p>
+      <h2 class="projects__title reveal" data-reveal>Trabalhos selecionados</h2>
+    </div>
+
+    <iframe src="https://1drv.ms/x/c/f0f88dcfc3fafc13/IQASAEZVcrlkQZd5R6XfLnoGAY-MZNaJfhJf9KCSXysR5CA?e=1AXXow" frameborder="0" width="50%" height="500px"></iframe>
+
+    <div class="projects__grid">
+      <article class="card reveal" data-reveal data-tilt>
+        <div class="card__media card__media--one"></div>
+        <div class="card__info">
+          <h3 class="card__title">Aurora Studio</h3>
+          <p class="card__tags">Branding · Web Design · Motion</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-reveal data-tilt>
+        <div class="card__media card__media--two"></div>
+        <div class="card__info">
+          <h3 class="card__title">Nimbus Capital</h3>
+          <p class="card__tags">Landing Page · UI · Desenvolvimento</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-reveal data-tilt>
+        <div class="card__media card__media--three"></div>
+        <div class="card__info">
+          <h3 class="card__title">Ferrugem Atelier</h3>
+          <p class="card__tags">E-commerce · Design System</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-reveal data-tilt>
+        <div class="card__media card__media--four"></div>
+        <div class="card__info">
+          <h3 class="card__title">Vero Arquitetura</h3>
+          <p class="card__tags">Site institucional · 3D · Scroll</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section id="contato" class="contact">
+    <div class="contact__inner">
+      <p class="contact__eyebrow reveal" data-reveal>Contato</p>
+      <h2 class="contact__title reveal" data-reveal>
+        Vamos criar algo <em>memorável</em>.
+      </h2>
+
+      <form class="contact__form reveal" data-reveal>
+        <div class="contact__row">
+          <div class="field">
+            <label for="name">Nome</label>
+            <input id="name" type="text" name="name" placeholder="Seu nome" required>
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input id="email" type="email" name="email" placeholder="seu@email.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">Mensagem</label>
+          <textarea id="message" name="message" rows="4" placeholder="Conte um pouco sobre o seu projeto"></textarea>
+        </div>
+        <button type="submit" class="btn" data-magnetic>
+          <span>Enviar mensagem</span>
+        </button>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <span>© 2026 Studio.</span>
+      <span>Feito com HTML, CSS &amp; JavaScript puro.</span>
+    </footer>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
